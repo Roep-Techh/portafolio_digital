@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ROEP TECH — Proyectos y demos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff; --bg-soft: #f4f5fa; --ink: #0a0a0f;
+    --blue: #1440ff; --blue-deep: #0026b8; --blue-tint: #e9edff;
+    --line: #0a0a0f; --muted: #53566b; --dot: #e9edff;
+    --radius: 6px; --shadow: 6px 6px 0 var(--ink); --shadow-sm: 4px 4px 0 var(--ink);
+    box-sizing: border-box; padding-top: env(safe-area-inset-top,0px); padding-bottom: env(safe-area-inset-bottom,0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top,0px); }
+  html, body { height: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.01em; margin: 0; }
+  a { color: inherit; } img { max-width: 100%; display: block; } button { font-family: inherit; }
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 clamp(20px,4vw,24px); }
+  .blueprint { background-image: radial-gradient(var(--dot) 1.2px, transparent 1.2px); background-size: 28px 28px; }
+
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; font-weight: 600; font-size: 15px;
+    border: 2px solid var(--ink); border-radius: var(--radius); background: var(--blue); color: #fff; cursor: pointer;
+    text-decoration: none; box-shadow: var(--shadow-sm); transition: transform .12s, box-shadow .12s; }
+  .btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink); }
+  .btn.ghost { background: #fff; color: var(--ink); }
+
+  /* ============ HERO ============ */
+  .hero-screen { position: relative; min-height: 100svh; min-height: 100vh; display: flex; flex-direction: column; }
+  .hero-nav { position: sticky; top: env(safe-area-inset-top,0px); z-index: 40; background: rgba(255,255,255,.9); backdrop-filter: blur(6px); border-bottom: 2px solid var(--ink); }
+  .hero-nav .row { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 16px clamp(20px,4vw,24px); max-width: 1160px; margin: 0 auto; }
+  .brand { font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 8px; font-family: 'Space Grotesk', sans-serif; }
+  .brand .dot { width: 10px; height: 10px; background: var(--blue); border: 2px solid var(--ink); border-radius: 50%; display: inline-block; }
+  .hero-links { display: flex; gap: 26px; font-size: 14px; font-weight: 500; }
+  .hero-links button { background: none; border: none; padding: 4px 0; border-bottom: 2px solid transparent; cursor: pointer; color: var(--ink); transition: border-color .15s; }
+  .hero-links button:hover { border-color: var(--blue); }
+  .menu-toggle { display: none; background: none; border: 2px solid var(--ink); border-radius: 6px; padding: 8px 10px; cursor: pointer; }
+  .menu-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); margin: 4px 0; }
+  @media (max-width: 620px) {
+    .hero-links { display: none; }
+    .hero-links.open {
+      display: flex; flex-direction: column; gap: 4px; position: absolute; top: 100%; left: 0; right: 0;
+      background: #fff; border-bottom: 2px solid var(--ink); padding: 16px clamp(20px,4vw,24px);
+    }
+    .hero-links.open button { padding: 8px 0; font-size: 15px; }
+    .menu-toggle { display: block; }
+  }
+
+  .hero-main { flex: 1; display: flex; align-items: center; padding: clamp(40px,8vw,70px) 0; }
+  .hero-title { font-size: clamp(2.6rem, 8vw, 5.2rem); line-height: 1.03; font-weight: 700; max-width: 16ch; }
+  .hero-title .word { display: inline-block; opacity: 0; transform: translateY(20px); animation: pullUp .6s cubic-bezier(.16,1,.3,1) forwards; }
+  .hero-title .accent { color: var(--blue); }
+  @keyframes pullUp { to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) { .hero-title .word { animation: none; opacity: 1; transform: none; } }
+  .hero-lead { margin-top: 22px; font-size: clamp(1rem,1.8vw,1.15rem); color: var(--muted); max-width: 52ch; }
+  .hero-cta { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* ============ CONTENIDO ============ */
+  .content-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .8s cubic-bezier(.22,.8,.28,1); }
+  .content-wrap.open { grid-template-rows: 1fr; }
+  .content-inner { overflow: hidden; min-height: 0; }
+
+  .section { padding: 76px 0; }
+  .section-head { max-width: 620px; margin-bottom: 44px; }
+  .section-head h2 { font-size: clamp(1.7rem,3vw,2.1rem); font-weight: 700; }
+  .section-head p { margin-top: 12px; font-size: 16px; color: var(--muted); }
+  .section-head .count { display: inline-block; margin-top: 8px; font-size: 13px; font-weight: 600; color: var(--blue-deep); }
+
+  /* ---- Carrusel ---- */
+  .carousel-shell { position: relative; padding: 0 clamp(4px,6vw,30px); }
+  .stage { position: relative; height: clamp(300px,44vw,370px); display: flex; align-items: center; justify-content: center; perspective: 1400px; }
+  .stage .card {
+    position: absolute; width: min(310px,60vw); aspect-ratio: 4/5; border-radius: var(--radius);
+    background: #fff; border: 2px solid var(--ink); box-shadow: var(--shadow); overflow: hidden;
+    transition: transform .55s cubic-bezier(.22,.8,.28,1), opacity .55s ease, filter .55s ease;
+    display: flex; flex-direction: column; cursor: pointer;
+  }
+  .stage .card .thumb { flex: 1; display: flex; align-items: center; justify-content: center; background: var(--blue-tint); color: var(--blue-deep); }
+  .stage .card .thumb svg { width: 56%; height: 56%; }
+  .stage .card .meta { padding: 16px 18px 18px; border-top: 2px solid var(--ink); }
+  .stage .card .meta .tag { font-size: 12px; font-weight: 600; color: var(--blue-deep); }
+  .stage .card .meta h3 { font-size: 1.02rem; margin-top: 4px; }
+  .stage .card .meta p { font-size: .82rem; color: var(--muted); margin: 6px 0 0; }
+
+  .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 200; width: 46px; height: 46px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #fff;
+    border: 2px solid var(--ink); color: var(--ink); box-shadow: var(--shadow-sm); cursor: pointer; transition: transform .12s, background .2s, color .2s; }
+  .nav-btn:hover { background: var(--blue); color: #fff; transform: translateY(-50%) translate(-2px,-2px); }
+  .nav-btn--prev { left: 0; } .nav-btn--next { right: 0; }
+  @media (max-width: 640px) { .nav-btn { width: 38px; height: 38px; } .nav-btn svg { width: 14px; height: 14px; } }
+
+  .dots { display: flex; justify-content: center; gap: 8px; margin-top: 26px; }
+  .dots button { width: 7px; height: 7px; border-radius: 50%; border: 1px solid var(--ink); padding: 0; background: #fff; cursor: pointer; }
+  .dots button[aria-current="true"] { background: var(--blue); width: 20px; border-radius: 4px; }
+
+  /* ---- Demos ---- */
+  .demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 20px; }
+  .demo-card { border: 2px solid var(--ink); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow-sm); padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+  .demo-card .status { display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; color: var(--muted); }
+  .demo-card .status .led { width: 8px; height: 8px; border-radius: 50%; background: var(--blue-tint); border: 1px solid var(--blue-deep); }
+  .demo-card .status.live .led { background: var(--blue); }
+  .demo-card h3 { font-size: 1.05rem; }
+  .demo-card p { font-size: .88rem; color: var(--muted); flex: 1; margin: 0; }
+  .demo-card .note { font-size: 11.5px; color: var(--muted); font-style: italic; }
+  .demo-card .open { align-self: flex-start; font-size: .85rem; font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--blue); padding-bottom: 2px; color: var(--ink); }
+
+  footer.site-foot { border-top: 2px solid var(--ink); padding: 32px clamp(20px,4vw,24px) calc(32px + env(safe-area-inset-bottom,0px)); }
+  footer.site-foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<section class="hero-screen blueprint" id="heroScreen">
+  <nav class="hero-nav">
+    <div class="row">
+      <div class="brand"><span class="dot"></span>ROEP TECH</div>
+      <div class="hero-links" id="heroLinks">
+        <button data-target="proyectos">Proyectos</button>
+        <button data-target="demos">Demos</button>
+        <button data-target="contacto">Contacto</button>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="hero-main wrap">
+    <div>
+      <h1 class="hero-title" id="heroTitle"></h1>
+      <p class="hero-lead">Los sistemas que ya están corriendo para negocios reales: rutas monitoreadas, ventas controladas, pedidos ordenados. Aquí puedes ver cada uno y probar una demo.</p>
+      <div class="hero-cta">
+        <button class="btn" id="openBtn">Ver proyectos</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="content-wrap" id="contentWrap">
+  <div class="content-inner">
+    <main>
+      <section class="section" id="proyectos">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Proyectos</h2>
+            <p>Da clic a una tarjeta para verla al centro.</p>
+            <span class="count" id="stage-count">01 / 03</span>
+          </div>
+          <div class="carousel-shell">
+            <button id="prevBtn" class="nav-btn nav-btn--prev" aria-label="Proyecto anterior">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <div class="stage" id="stage" role="region" aria-label="Carrusel de proyectos" tabindex="0"></div>
+            <button id="nextBtn" class="nav-btn nav-btn--next" aria-label="Siguiente proyecto">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+          <div class="dots" id="dots"></div>
+        </div>
+      </section>
+
+      <section class="section blueprint" id="demos">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Demos con las que puedes interactuar</h2>
+            <p>Versiones de muestra, sin datos ni nombres reales de negocio.</p>
+          </div>
+          <div class="demo-grid" id="demoGrid"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-foot" id="contacto">
+      <div class="wrap">
+        <span>ROEP TECH — sistemas, apps y soporte técnico</span>
+        <span>San Martín Texmelucan, Puebla</span>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<script>
+(function () {
+  const titleParts = [{ text: "Sistemas que", accent: false }, { text: "resuelven.", accent: true }];
+  const heroTitle = document.getElementById('heroTitle');
+  let i = 0;
+  titleParts.forEach(part => {
+    part.text.split(" ").forEach(w => {
+      const span = document.createElement('span');
+      span.className = 'word' + (part.accent ? ' accent' : '');
+      span.textContent = w;
+      span.style.animationDelay = (0.1 + i * 0.09) + 's';
+      span.style.marginRight = '0.28em';
+      heroTitle.appendChild(span);
+      i++;
+    });
+  });
+
+  const contentWrap = document.getElementById('contentWrap');
+  let opened = false;
+  window.openContent = function (targetId) {
+    if (!opened) { contentWrap.classList.add('open'); opened = true; }
+    setTimeout(() => {
+      const el = targetId ? document.getElementById(targetId) : contentWrap;
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, opened ? 120 : 380);
+  };
+  document.getElementById('openBtn').addEventListener('click', () => openContent('proyectos'));
+
+  const heroLinks = document.getElementById('heroLinks');
+  const menuToggle = document.getElementById('menuToggle');
+  menuToggle.addEventListener('click', () => {
+    const isOpen = heroLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.querySelectorAll('.hero-links button').forEach(b => b.addEventListener('click', () => {
+    openContent(b.dataset.target);
+    heroLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // ---- Proyectos: edita este arreglo con tus datos reales ----
+  // "title/subtitle" se muestran en el carrusel. "demoTitle/demoDesc" son genéricos,
+  // sin nombre de cliente, para la sección de demos.
+  const proyectos = [
+    { tag: 'transporte · monitoreo', title: 'Ruta 18', subtitle: 'Monitoreo y control de tiempos', icon: 'route',
+      demoTitle: 'Demo · Monitoreo de rutas', demoDesc: 'Seguimiento en vivo de unidades y tiempos por parada.', demoStatus: 'live', demoUrl: 'https://pruebarutaas.pages.dev/' },
+    { tag: 'tienda · punto de venta', title: 'Grupo Lobo', subtitle: 'Punto de venta e inventario', icon: 'shop',
+      demoTitle: 'Demo · Punto de venta', demoDesc: 'Ventas, existencias y cortes de caja tipo tienda de conveniencia.', demoStatus: 'test', demoUrl: 'https://grupolobo1.github.io/TiendaOnline/' },
+    { tag: 'comida · pedidos', title: 'Antojería', subtitle: 'Catálogo y pedidos en línea', icon: 'food',
+      demoTitle: 'Demo · Pedidos de comida', demoDesc: 'Menú, armado de pedido y estatus de preparación.', demoStatus: 'dev', demoUrl: 'https://digital-dimention.github.io/Antojitos/' }
+  ];
+
+  const icons = {
+    route: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="12" r="4"/><circle cx="38" cy="36" r="4"/><path d="M10 16v6a8 8 0 0 0 8 8h12a8 8 0 0 1 8 8" stroke-dasharray="3 4"/></svg>',
+    shop: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 18v20h32V18M6 18l4-10h28l4 10M6 18h36"/><path d="M18 38v-8h12v8"/></svg>',
+    food: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="27" r="13"/><path d="M24 10v7M18 10v7M30 10v7"/></svg>'
+  };
+  const statusLabel = { live: 'en producción', test: 'en pruebas', dev: 'en desarrollo' };
+
+  const stage = document.getElementById('stage');
+  const dotsWrap = document.getElementById('dots');
+  const countEl = document.getElementById('stage-count');
+  let current = 0;
+  const pad = n => String(n + 1).padStart(2, '0');
+
+  function renderStage() {
+    stage.innerHTML = '';
+    proyectos.forEach((p, idx) => {
+      let offset = idx - current;
+      const n = proyectos.length;
+      if (offset > n / 2) offset -= n;
+      if (offset < -n / 2) offset += n;
+      const card = document.createElement('div');
+      card.className = 'card';
+      const abs = Math.abs(offset);
+      card.style.transform = `translateX(${offset * 150}px) rotateY(${offset * -28}deg) scale(${1 - Math.min(abs,2) * 0.14})`;
+      card.style.zIndex = 100 - abs;
+      card.style.opacity = abs > 2 ? '0' : '1';
+      card.style.filter = offset === 0 ? 'none' : 'brightness(0.85)';
+      card.innerHTML = `<div class="thumb">${icons[p.icon]}</div><div class="meta"><div class="tag">${p.tag}</div><h3>${p.title}</h3><p>${p.subtitle}</p></div>`;
+      card.addEventListener('click', () => { current = idx; update(); });
+      stage.appendChild(card);
+    });
+  }
+  function renderDots() {
+    dotsWrap.innerHTML = '';
+    proyectos.forEach((_, idx) => {
+      const b = document.createElement('button');
+      b.setAttribute('aria-label', 'Ir al proyecto ' + (idx + 1));
+      b.setAttribute('aria-current', idx === current ? 'true' : 'false');
+      b.addEventListener('click', () => { current = idx; update(); });
+      dotsWrap.appendChild(b);
+    });
+  }
+  function update() { renderStage(); renderDots(); countEl.textContent = `${pad(current)} / ${pad(proyectos.length - 1)}`; }
+  document.getElementById('prevBtn').addEventListener('click', () => { current = (current - 1 + proyectos.length) % proyectos.length; update(); });
+  document.getElementById('nextBtn').addEventListener('click', () => { current = (current + 1) % proyectos.length; update(); });
+  stage.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') document.getElementById('prevBtn').click(); if (e.key === 'ArrowRight') document.getElementById('nextBtn').click(); });
+  update();
+
+  const demoGrid = document.getElementById('demoGrid');
+  proyectos.forEach(p => {
+    const el = document.createElement('div');
+    el.className = 'demo-card';
+    el.innerHTML = `<div class="status ${p.demoStatus === 'live' ? 'live' : ''}"><span class="led"></span>${statusLabel[p.demoStatus]}</div><h3>${p.demoTitle}</h3><p>${p.demoDesc}</p><p class="note">* datos de muestra, sin información real del negocio</p><a class="open" href="${p.demoUrl}" target="_blank" rel="noopener">Ver demo →</a>`;
+    demoGrid.appendChild(el);
+  });
+})();
+</script>
+</body>
+</html>
