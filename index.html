@@ -109,6 +109,7 @@
   .demo-card p { font-size: .88rem; color: var(--muted); flex: 1; margin: 0; }
   .demo-card .note { font-size: 11.5px; color: var(--muted); font-style: italic; }
   .demo-card .open { align-self: flex-start; font-size: .85rem; font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--blue); padding-bottom: 2px; color: var(--ink); }
+  .demo-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
 
   footer.site-foot { border-top: 2px solid var(--ink); padding: 32px clamp(20px,4vw,24px) calc(32px + env(safe-area-inset-bottom,0px)); }
   footer.site-foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--muted); }
@@ -228,7 +229,13 @@
   // sin nombre de cliente, para la sección de demos.
   const proyectos = [
     { tag: 'transporte · monitoreo', title: 'Ruta 18', subtitle: 'Monitoreo y control de tiempos', icon: 'route',
-      demoTitle: 'Demo · Monitoreo de rutas', demoDesc: 'Seguimiento en vivo de unidades y tiempos por parada.', demoStatus: 'live', demoUrl: 'https://pruebarutaas.pages.dev/' },
+      demoTitle: 'Demo · Monitoreo de rutas', demoDesc: 'Seguimiento en vivo de unidades y tiempos por parada.', demoStatus: 'live',
+      demoLinks: [
+        { label: 'Panel pasajero', url: 'https://pruebarutaas.pages.dev/' },
+        { label: 'Panel dueño', url: 'https://pruebarutaas.pages.dev/dueno' },
+        { label: 'Panel checador', url: 'https://pruebarutaas.pages.dev/checador' },
+        { label: 'Panel conductor', url: 'https://pruebarutaas.pages.dev/conductor' }
+      ] },
     { tag: 'tienda · punto de venta', title: 'Grupo Lobo', subtitle: 'Punto de venta e inventario', icon: 'shop',
       demoTitle: 'Demo · Punto de venta', demoDesc: 'Ventas, existencias y cortes de caja tipo tienda de conveniencia.', demoStatus: 'test', demoUrl: 'https://grupolobo1.github.io/TiendaOnline/' },
     { tag: 'comida · pedidos', title: 'Antojería', subtitle: 'Catálogo y pedidos en línea', icon: 'food',
@@ -287,7 +294,10 @@
   proyectos.forEach(p => {
     const el = document.createElement('div');
     el.className = 'demo-card';
-    el.innerHTML = `<div class="status ${p.demoStatus === 'live' ? 'live' : ''}"><span class="led"></span>${statusLabel[p.demoStatus]}</div><h3>${p.demoTitle}</h3><p>${p.demoDesc}</p><p class="note">* datos de muestra, sin información real del negocio</p><a class="open" href="${p.demoUrl}" target="_blank" rel="noopener">Ver demo →</a>`;
+    const linksHtml = p.demoLinks
+      ? `<div class="demo-links">${p.demoLinks.map(l => `<a class="open" href="${l.url}" target="_blank" rel="noopener">${l.label} →</a>`).join('')}</div>`
+      : `<a class="open" href="${p.demoUrl}" target="_blank" rel="noopener">Ver demo →</a>`;
+    el.innerHTML = `<div class="status ${p.demoStatus === 'live' ? 'live' : ''}"><span class="led"></span>${statusLabel[p.demoStatus]}</div><h3>${p.demoTitle}</h3><p>${p.demoDesc}</p><p class="note">* datos de muestra, sin información real del negocio</p>${linksHtml}`;
     demoGrid.appendChild(el);
   });
 })();
