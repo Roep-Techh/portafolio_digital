@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="ROEP TECH — Sistemas, apps y soporte técnico. Proyectos en producción: monitoreo de rutas, punto de venta, pedidos en línea.">
-  <title>ROEP TECH — Proyectos y demos</title>
+  <meta name="description" content="ROEP TECH — Sistemas, apps y soporte técnico en San Simón Atzitzintla, Puebla. Mantenimiento de PC y laptop, recuperación de datos, reparación de pantalla azul. Proyectos: monitoreo de rutas, punto de venta, pedidos en línea.">
+  <title>ROEP TECH — Proyectos, demos y soporte técnico</title>
 
   <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +18,14 @@
 
   <!-- ==================== HERO ==================== -->
   <section class="hero-screen blueprint" id="heroScreen">
+    <!-- Formas flotantes decorativas -->
+    <div class="hero-shapes" aria-hidden="true">
+      <span class="shape shape--square"></span>
+      <span class="shape shape--circle"></span>
+      <span class="shape shape--plus">+</span>
+      <span class="shape shape--square shape--sm"></span>
+      <span class="shape shape--circle shape--sm"></span>
+    </div>
     <nav class="hero-nav">
       <div class="row">
         <a class="brand" href="#heroScreen" aria-label="ROEP TECH — inicio">
@@ -26,6 +34,9 @@
         <div class="hero-links" id="heroLinks">
           <button data-target="proyectos">Proyectos</button>
           <button data-target="demos">Demos</button>
+          <button data-target="servicios">Servicios</button>
+          <button data-target="cotizador">Cotizador</button>
+          <button data-target="faq">Preguntas</button>
           <button data-target="contacto">Contacto</button>
         </div>
         <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
@@ -37,25 +48,26 @@
     <div class="hero-main wrap">
       <div>
         <h1 class="hero-title" id="heroTitle"></h1>
-        <p class="hero-lead">Los sistemas que ya están corriendo para negocios reales: rutas monitoreadas, ventas controladas, pedidos ordenados. Aquí puedes ver cada uno y probar una demo.</p>
+        <p class="hero-lead">Los sistemas que ya están corriendo para negocios reales: rutas monitoreadas, ventas controladas, pedidos ordenados. Además, mantenemos tu PC y laptop funcionando como nuevas.</p>
         <div class="hero-cta">
-          <button class="btn" id="openBtn">Ver proyectos</button>
+          <button class="btn" data-target="proyectos">Ver proyectos</button>
+          <button class="btn ghost" data-target="cotizador">Simular cotización</button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ==================== CONTENIDO ==================== -->
-  <div class="content-wrap" id="contentWrap">
+  <div class="content-wrap">
     <div class="content-inner">
       <main>
 
-        <!-- Proyectos: carrusel -->
+        <!-- ==================== PROYECTOS (primero) ==================== -->
         <section class="section" id="proyectos">
           <div class="wrap">
             <div class="section-head">
-              <h2>Proyectos</h2>
-              <p>Da clic a una tarjeta para verla al centro.</p>
+              <h2>Proyectos hechos</h2>
+              <p>Sistemas en funcionamiento para negocios reales. Da clic a una tarjeta para verla al centro.</p>
               <span class="count" id="stage-count">01 / 03</span>
             </div>
             <div class="carousel-shell">
@@ -71,14 +83,387 @@
           </div>
         </section>
 
-        <!-- Demos -->
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <!-- ==================== DEMOS ==================== -->
         <section class="section blueprint" id="demos">
           <div class="wrap">
             <div class="section-head">
-              <h2>Demos con las que puedes interactuar</h2>
-              <p>Versiones de muestra, sin datos ni nombres reales de negocio.</p>
+              <h2>Demos para probar</h2>
+              <p>Versiones de muestra, sin datos ni nombres reales de negocio. Entra y interactúa.</p>
             </div>
             <div class="demo-grid" id="demoGrid"></div>
+          </div>
+        </section>
+
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <!-- ==================== SERVICIOS ==================== -->
+        <section class="section" id="servicios">
+          <div class="wrap">
+            <div class="section-head">
+              <h2>Servicios de mantenimiento</h2>
+              <p>Hacemos que tu PC o laptop vuelva a ir rápida. Software, sistema operativo, instalaciones y mejoras de hardware.</p>
+            </div>
+
+            <!-- Nota: diagnóstico y domicilio -->
+            <div class="services-note">
+              <div class="note-item">
+                <span class="note-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
+                </span>
+                <div>
+                  <strong>Diagnóstico: $100 MXN</strong>
+                  <p>Revisamos tu equipo y te decimos qué tiene. Si autorizas el trabajo, se cobra también el servicio.</p>
+                </div>
+              </div>
+              <div class="note-item">
+                <span class="note-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                </span>
+                <div>
+                  <strong>Servicio a domicilio</strong>
+                  <p>Vamos a tu casa u oficina. Cobramos biáticos según el lugar donde estés. Escríbenos por WhatsApp para cotizar tu visita.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="services-carousel">
+              <button id="svcPrevBtn" class="nav-btn nav-btn--prev" aria-label="Servicios anteriores">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <div class="services-grid" id="servicesGrid">
+
+              <div class="service-card">
+                <div class="service-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 24h32"/><path d="M24 8v32"/><rect x="14" y="14" width="20" height="20" rx="2"/></svg>
+                </div>
+                <h3>Mantenimiento de software</h3>
+                <p>Optimización completa para que tu equipo vaya más rápido: limpieza de programas innecesarios, inicio rápido, actualizaciones y revisión general.</p>
+                <div class="service-price"><strong>$500</strong> MXN</div>
+              </div>
+
+              <div class="service-card">
+                <div class="service-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 12h24v24H12z"/><path d="M18 24l4 4 8-8" stroke-width="2"/><path d="M20 8v4M28 8v4M20 36v4M28 36v4"/></svg>
+                </div>
+                <h3>Cambio de sistema operativo</h3>
+                <p>Instalamos un sistema ligero y rápido sin licencia por <strong>$700</strong>. Si prefieres Windows con licencia oficial, son <strong>$500</strong> más el costo de la licencia.</p>
+                <div class="service-price">Desde <strong>$500</strong> MXN + licencia</div>
+              </div>
+
+              <div class="service-card">
+                <div class="service-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="8" y="8" width="32" height="32" rx="3"/><path d="M18 24l4 4 8-9" stroke-width="2"/></svg>
+                </div>
+                <h3>Instalación de software</h3>
+                <p>Con licencia oficial: <strong>$400</strong> más el precio de la licencia. Sin licencia: <strong>$550</strong> e instalamos la versión que necesites.</p>
+                <div class="service-price">Desde <strong>$400</strong> MXN + licencia</div>
+              </div>
+
+              <div class="service-card">
+                <div class="service-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="10" width="36" height="28" rx="2"/><path d="M6 18h36"/><path d="M12 26h8M12 32h14"/></svg>
+                </div>
+                <h3>Instalación de Office</h3>
+                <p>Con licencia oficial: <strong>$200</strong> más el costo de la licencia. Sin licencia: <strong>$300</strong>. Word, Excel, PowerPoint y más.</p>
+                <div class="service-price">Desde <strong>$200</strong> MXN + licencia</div>
+              </div>
+
+              <div class="service-card">
+                <div class="service-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="10" y="14" width="28" height="20" rx="2"/><path d="M16 20h16M16 26h10"/><path d="M34 38l4 4M38 38l-4 4" stroke-width="2"/></svg>
+                </div>
+                <h3>Aumento de memoria RAM</h3>
+                <p>Mano de obra para instalar el módulo de memoria. El módulo de RAM se cotiza aparte según la capacidad.</p>
+                <div class="service-price"><strong>$300</strong> MXN</div>
+              </div>
+
+              <div class="service-card">
+                <div class="service-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="8" y="12" width="32" height="24" rx="2"/><path d="M8 20h32"/><circle cx="14" cy="28" r="2"/><path d="M20 28h14"/></svg>
+                </div>
+                <h3>Cambio de disco a SSD</h3>
+                <p>Mano de obra para cambiar tu disco por un SSD e incluye la migración de tus datos. El SSD se cotiza aparte.</p>
+                <div class="service-price"><strong>$300</strong> MXN</div>
+              </div>
+
+              <div class="service-card">
+                <div class="service-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="14" width="36" height="20" rx="2"/><path d="M12 20h4M18 20h4M24 20h4M30 20h4M12 26h4M18 26h12"/></svg>
+                </div>
+                <h3>Cambio de teclado</h3>
+                <p>Mano de obra para sustituir el teclado de tu laptop. El teclado se cotiza aparte según tu modelo.</p>
+                <div class="service-price"><strong>$300</strong> MXN</div>
+              </div>
+
+              <div class="service-card">
+                <div class="service-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="14" y="6" width="20" height="36" rx="3"/><path d="M20 10h8"/><circle cx="24" cy="36" r="2"/><path d="M18 20h12M18 26h12M18 32h8"/></svg>
+                </div>
+                <h3>Soporte remoto</h3>
+                <p>Resolvemos problemas de software a distancia por TeamViewer o AnyDesk. Rápido y sin necesidad de mover tu equipo.</p>
+                <div class="service-price">Desde <strong>$350</strong> MXN</div>
+              </div>
+
+              </div>
+              <button id="svcNextBtn" class="nav-btn nav-btn--next" aria-label="Más servicios">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <!-- ==================== COTIZADOR ==================== -->
+        <section class="section blueprint" id="cotizador">
+          <div class="wrap">
+            <div class="section-head">
+              <h2>Simular cotización</h2>
+              <p>Selecciona tu tipo de equipo y los servicios que necesitas. El precio se actualiza en tiempo real.</p>
+            </div>
+
+            <div class="quote-tool">
+              <div class="quote-layout">
+
+                <!-- Columna izquierda: pasos -->
+                <div class="quote-steps">
+                  <!-- Paso 1: tipo de equipo -->
+                  <div class="quote-step">
+                    <h3 class="quote-step-title"><span class="step-num">1</span> ¿Qué equipo tienes?</h3>
+                    <div class="device-options">
+                      <button class="device-btn" data-device="pc">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="10" width="36" height="24" rx="2"/><path d="M16 40h16M24 34v6"/></svg>
+                        <span>PC (Escritorio)</span>
+                      </button>
+                      <button class="device-btn" data-device="laptop">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="10" y="10" width="28" height="20" rx="2"/><path d="M6 34h36l-2-4H8l-2 4z"/></svg>
+                        <span>Laptop</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Paso 2: servicios -->
+                  <div class="quote-step" id="quoteServices" style="display:none;">
+                    <h3 class="quote-step-title"><span class="step-num">2</span> Selecciona los servicios</h3>
+                    <div class="service-options" id="serviceOptions"></div>
+                  </div>
+                </div>
+
+                <!-- Columna derecha: resumen pegajoso -->
+                <div class="quote-summary" id="quoteSummary" style="display:none;">
+                  <div class="quote-total">
+                    <span>Total estimado:</span>
+                    <strong id="quoteTotal">$0 MXN</strong>
+                  </div>
+                  <div class="quote-breakdown" id="quoteBreakdown"></div>
+                  <p class="quote-note">* Precio estimado de mano de obra. Las licencias se agregan aparte según el producto elegido. El costo final se confirma tras el diagnóstico.</p>
+                  <div class="quote-actions">
+                    <a class="btn" id="quoteWhatsapp" href="#" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+                    <button class="btn ghost" id="quoteReset">Empezar de nuevo</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <!-- ==================== FAQ ==================== -->
+        <section class="section" id="faq">
+          <div class="wrap">
+            <div class="section-head">
+              <h2>Preguntas frecuentes</h2>
+              <p>Lo que más nos preguntan. Si tu duda no está aquí, escríbenos por WhatsApp.</p>
+            </div>
+            <div class="faq-list" id="faqList">
+
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q">Mi PC o laptop no prende, ¿qué hago?</span>
+                  <span class="faq-icon">+</span>
+                </summary>
+                <div class="faq-a">
+                  <p>Antes de preocuparte, revisa esto:</p>
+                  <ol>
+                    <li><strong>El cargador:</strong> verifica que la luz del cargador se encienda. Si no, puede estar dañado.</li>
+                    <li><strong>El cable de corriente:</strong> prueba otro enchufe y otro cable si puedes.</li>
+                    <li><strong>La batería (laptops):</strong> intenta prender sin batería, solo con el cargador.</li>
+                    <li><strong>Presiona el botón de encendido 15 segundos</strong> sin soltar (descarga estática) y vuelve a intentar.</li>
+                  </ol>
+                  <p>Si nada funciona, puede ser la fuente de poder (PC) o la tarjeta madre (laptop). <strong>Tráela y la diagnosticamos.</strong></p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q">Aparece una pantalla azul con un error, ¿qué hago?</span>
+                  <span class="faq-icon">+</span>
+                </summary>
+                <div class="faq-a">
+                  <p>La pantalla azul (BSOD) puede venir de:</p>
+                  <ul>
+                    <li><strong>Memoria RAM</strong> sucia o dañada — se limpia o se cambia.</li>
+                    <li><strong>Drivers</strong> desactualizados o corruptos — se actualizan.</li>
+                    <li><strong>Disco duro</strong> con errores — se revisa con pruebas.</li>
+                    <li><strong>Temperatura alta</strong> — necesita limpieza y pasta térmica.</li>
+                    <li><strong>Windows dañado</strong> — se repara sin perder archivos.</li>
+                  </ul>
+                  <p><strong>Consejo:</strong> toma foto al código de error (algo como CRITICAL_PROCESS_DIED) y trae la PC. Con eso diagnosticamos más rápido. El diagnóstico cuesta $100.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q">¿Pueden ponerle más memoria o cambiar mi disco?</span>
+                  <span class="faq-icon">+</span>
+                </summary>
+                <div class="faq-a">
+                  <p>Sí. Hacemos:</p>
+                  <ul>
+                    <li><strong>Aumento de memoria RAM:</strong> $300 de mano de obra (el módulo se cotiza aparte).</li>
+                    <li><strong>Cambio de disco a SSD:</strong> $300 de mano de obra con migración de datos (el SSD se cotiza aparte).</li>
+                    <li><strong>Cambio de teclado de laptop:</strong> $300 de mano de obra (el teclado se cotiza aparte).</li>
+                  </ul>
+                  <p>Cambiar a SSD es la mejora más grande que puedes hacer: tu PC arrancará 5 a 10 veces más rápido.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q">Mi PC está muy lenta, ¿qué puede tener?</span>
+                  <span class="faq-icon">+</span>
+                </summary>
+                <div class="faq-a">
+                  <p>Las causas más comunes de lentitud son:</p>
+                  <ul>
+                    <li><strong>Disco duro mecánico (HDD):</strong> cambiar a SSD es la mejora más grande que puedes hacer. Tu PC arrancará 5 a 10 veces más rápido.</li>
+                    <li><strong>Poca memoria RAM:</strong> si tienes 4 GB o menos, subir a 8 GB ayuda mucho.</li>
+                    <li><strong>Polvo y sobrecalentamiento:</strong> el equipo se baja rendimiento para protegerse.</li>
+                    <li><strong>Programas en el inicio:</strong> desactivamos lo que no necesitas al encender.</li>
+                    <li><strong>Virus o malware:</strong> pueden estar usando tu PC sin que sepas.</li>
+                  </ul>
+                  <p>El <strong>mantenimiento de software ($500)</strong> resuelve la mayoría de estos casos.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q">¿Cuánto cuesta el diagnóstico?</span>
+                  <span class="faq-icon">+</span>
+                </summary>
+                <div class="faq-a">
+                  <p>El diagnóstico cuesta <strong>$100 MXN</strong> e incluye revisión de hardware y software.</p>
+                  <p><strong>Si nos autorizas el trabajo, se cobra también el servicio</strong> que se vaya a realizar (el diagnóstico no se pierde, se suma al proceso).</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q">¿Cuánto cuesta cambiarle el sistema operativo a mi PC?</span>
+                  <span class="faq-icon">+</span>
+                </summary>
+                <div class="faq-a">
+                  <p>Depende de lo que prefieras:</p>
+                  <ul>
+                    <li><strong>Sistema ligero sin licencia:</strong> $700 MXN. Ideal para equipos viejos que necesitan ir rápido.</li>
+                    <li><strong>Windows con licencia oficial:</strong> $500 MXN de instalación más el costo de la licencia.</li>
+                  </ul>
+                  <p>En ambos casos respaldamos tus archivos antes de empezar y dejamos drivers y listo para usar.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q">¿Cuánto tarda el servicio?</span>
+                  <span class="faq-icon">+</span>
+                </summary>
+                <div class="faq-a">
+                  <ul>
+                    <li><strong>Mantenimiento de software:</strong> 1 a 2 horas.</li>
+                    <li><strong>Cambio de sistema operativo:</strong> 2 a 4 horas.</li>
+                    <li><strong>Reparación de pantalla azul:</strong> 1 a 24 horas según la causa.</li>
+                    <li><strong>Cambio de SSD con migración:</strong> 2 a 4 horas.</li>
+                    <li><strong>Recuperación de datos:</strong> de 24 horas a 7 días según el daño.</li>
+                  </ul>
+                  <p>Te avisamos siempre antes de empezar cuánto va a tomar.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q">¿Dan garantía en el servicio?</span>
+                  <span class="faq-icon">+</span>
+                </summary>
+                <div class="faq-a">
+                  <p>Sí. Todos nuestros servicios incluyen garantía:</p>
+                  <ul>
+                    <li><strong>Mantenimiento y limpieza:</strong> 30 días de garantía.</li>
+                    <li><strong>Instalación de software:</strong> 15 días.</li>
+                    <li><strong>Cambio de piezas:</strong> la garantía del fabricante de la pieza nueva.</li>
+                  </ul>
+                  <p>Si el mismo problema regresa dentro del plazo, lo arreglamos sin costo.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q">¿Hacen servicio a domicilio?</span>
+                  <span class="faq-icon">+</span>
+                </summary>
+                <div class="faq-a">
+                  <p>Sí, vamos a tu casa u oficina. <strong>Cobramos biáticos según el lugar donde estés.</strong> Escríbenos por WhatsApp con tu ubicación y te decimos cuánto sale el traslado.</p>
+                  <p>Para algunas reparaciones es mejor traer el equipo (cambio de disco, teclado, RAM). Te decimos cuál conviene según tu caso.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q">¿Pierdo mis archivos al formatear?</span>
+                  <span class="faq-icon">+</span>
+                </summary>
+                <div class="faq-a">
+                  <p><strong>No, si lo hacemos nosotros.</strong> Antes de formatear siempre hacemos respaldo de tus documentos, fotos y archivos importantes.</p>
+                  <p>Si el disco está dañado y no se puede respaldar, te avisamos antes de hacer cualquier cosa y te explicamos las opciones de recuperación.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q">¿Cuál es su horario de atención?</span>
+                  <span class="faq-icon">+</span>
+                </summary>
+                <div class="faq-a">
+                  <ul>
+                    <li><strong>Lunes a viernes:</strong> 9:00 AM a 5:00 PM</li>
+                    <li><strong>Sábado:</strong> 10:00 AM a 2:00 PM</li>
+                    <li><strong>Domingo:</strong> cerrado (pero por WhatsApp respondemos mensajes)</li>
+                  </ul>
+                  <p>Estamos en San Simón Atzitzintla, Puebla.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q">¿Atienden empresas y negocios?</span>
+                  <span class="faq-icon">+</span>
+                </summary>
+                <div class="faq-a">
+                  <p>Sí. Ofrecemos soporte para empresas con:</p>
+                  <ul>
+                    <li>Mantenimiento programado (mensual o trimestral).</li>
+                    <li>Soporte remoto prioritario.</li>
+                    <li>Atención para múltiples equipos.</li>
+                    <li>Factura para deducibles.</li>
+                  </ul>
+                  <p>Escríbenos y armamos un plan a la medida de tu negocio.</p>
+                </div>
+              </details>
+
+            </div>
           </div>
         </section>
 
@@ -87,12 +472,29 @@
       <!-- Footer / Contacto -->
       <footer class="site-foot" id="contacto">
         <div class="wrap">
-          <span>ROEP TECH — sistemas, apps y soporte técnico</span>
-          <span>San Martín Texmelucan, Puebla</span>
+          <div class="foot-col">
+            <span class="foot-brand">ROEP TECH</span>
+            <span>Sistemas, apps y soporte técnico</span>
+          </div>
+          <div class="foot-col">
+            <span>San Simón Atzitzintla, Puebla</span>
+            <span>Lun a Vie · 9:00 AM – 5:00 PM</span>
+            <span>Sábado · 10:00 AM – 2:00 PM</span>
+          </div>
+          <div class="foot-col">
+            <a href="https://wa.me/52-220-227-8803" target="_blank" rel="noopener" class="foot-link">WhatsApp</a>
+            <a href="mailto:roeptech@gmail.com" class="foot-link">roeptech@gmail
+              .com</a>
+          </div>
         </div>
       </footer>
     </div>
   </div>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a class="float-whatsapp" href="https://wa.me/5212461234567?text=Hola%20ROEP%20TECH,%20necesito%20ayuda%20con%20mi%20equipo" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.04 3C9.04 3 3.36 8.68 3.36 15.68c0 2.24.59 4.42 1.71 6.34L3 29l7.16-1.88a12.6 12.6 0 0 0 5.88 1.44h.01c6.99 0 12.67-5.68 12.67-12.68C28.72 8.68 23.03 3 16.04 3zm0 23.04h-.01a10.5 10.5 0 0 1-5.36-1.47l-.38-.23-4.25 1.11 1.13-4.14-.25-.4a10.46 10.46 0 0 1-1.6-5.6c0-5.79 4.72-10.51 10.52-10.51 2.81 0 5.45 1.1 7.44 3.08a10.44 10.44 0 0 1 3.08 7.44c0 5.8-4.72 10.52-10.52 10.52zm5.77-7.88c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.19.21-.37.24-.68.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.88-1.76-2.2-.19-.32-.02-.5.14-.65.14-.14.32-.37.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.72-.98-2.35-.26-.62-.53-.54-.71-.55l-.61-.01c-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.65s1.14 3.08 1.3 3.29c.16.21 2.24 3.42 5.42 4.8.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.88-.77 2.14-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.37z"/></svg>
+  </a>
 
   <!-- Script -->
   <script src="js/main.js"></script>
